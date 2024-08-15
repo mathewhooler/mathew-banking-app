@@ -1,0 +1,1 @@
+data class Account(val customer: Customer, var balance: Balance)
