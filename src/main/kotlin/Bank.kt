@@ -28,7 +28,7 @@ class Bank(val accounts: MutableList<Account>) {
   }
 
   fun checkBalance(customerId: Int): Double {
-    val account = accounts.find { it.customer.id == customerId }
+    val account = accounts.find { it.customer.customerId == customerId }
     if (account == null) {
       throw Exception("Account not found")
     }

@@ -1,1 +1,3 @@
-data class Account(val customer: Customer, var balance: Double)
+data class Account(val accountId, var balance: Double) {
+  val customer: Any
+}

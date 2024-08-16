@@ -1,1 +1,1 @@
-data class Customer(val name: String, val id: Int)
+data class Customer(val account: Account, val name: String, val customerId: Int)
