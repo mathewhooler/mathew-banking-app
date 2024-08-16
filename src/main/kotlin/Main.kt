@@ -5,10 +5,10 @@ fun main() {
   val c4 = Customer("Mark", 4)
 
   val bank = Bank(mutableListOf(
-    Account(c1, Balance(0.0)),
-    Account(c2, Balance(0.0)),
-    Account(c3, Balance(0.0)),
-    Account(c4, Balance(0.0))
+    Account(c1, 0.0),
+    Account(c2, 0.0),
+    Account(c3, 0.0),
+    Account(c4, 0.0)
   ))
 
   bank.deposit("Mathew", 1, 2000.0)

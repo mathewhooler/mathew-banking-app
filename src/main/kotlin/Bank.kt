@@ -1,6 +1,4 @@
-import Balance as Balance
-
-data class Bank(val accounts: MutableList<Account>) {
+class Bank(val accounts: MutableList<Account>) {
 
   fun deposit(customerName: String, customerId: Int, amount: Double) {
     val account = accounts.find { it.customer.name == customerName && it.customer.id == customerId }
@@ -10,7 +8,7 @@ data class Bank(val accounts: MutableList<Account>) {
     if (amount <= 0) {
       throw IllegalArgumentException("Deposit amount must be greater than zero")
     }
-    account.balance = Balance(account.balance.amount + amount)
+    account.balance += amount
 
   }
 
@@ -25,11 +23,11 @@ data class Bank(val accounts: MutableList<Account>) {
     if (amount > account.balance) {
       throw IllegalArgumentException("Insufficient funds in account")
     }
-    account.balance = Balance(account.balance.amount - amount)
+    account.balance -= amount
 
   }
 
-  fun checkBalance(customerId: Int): Balance {
+  fun checkBalance(customerId: Int): Double {
     val account = accounts.find { it.customer.id == customerId }
     if (account == null) {
       throw Exception("Account not found")
@@ -37,7 +35,3 @@ data class Bank(val accounts: MutableList<Account>) {
     return account.balance
   }
 }
-
-// private operator fun Any.compareTo(balance: Balance): Int {
-// return 0
-// }
