@@ -5,10 +5,10 @@ fun main() {
   val c4 = Customer("Mark", 4)
 
   val bank = Bank(mutableListOf(
-    Account(c1, 0.0),
-    Account(c2, 0.0),
-    Account(c3, 0.0),
-    Account(c4, 0.0)
+    Account(c1, 1, 0.0),
+    Account(c2, 2, 0.0),
+    Account(c3, 3, 0.0),
+    Account(c4, 4, 0.0)
   ))
 
   bank.deposit("Mathew", 1, 2000.0)
@@ -23,4 +23,7 @@ fun main() {
   val balance1 = bank.checkBalance(1)
   val balance2 = bank.checkBalance(3)
 
+  println("Balance of account 1: $balance1")
+  println("Balance of account 3: $balance2")
 }
+

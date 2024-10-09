@@ -1,7 +1,7 @@
 class Bank(val accounts: MutableList<Account>) {
 
-  fun deposit(customerName: String, customerId: Int, amount: Double) {
-    val account = accounts.find { it.customer.name == customerName && it.customer.id == customerId }
+  fun deposit(customerId: Int, amount: Double) {
+    val account = accounts.find { it.customer.name == customerName && it.customer.customerId == customerId }
     if (account == null) {
       throw Exception("Account not found")
     }
@@ -12,8 +12,8 @@ class Bank(val accounts: MutableList<Account>) {
 
   }
 
-  fun withdraw(customerName: String, customerId: Int, amount: Double) {
-    val account = accounts.find { it.customer.name == customerName && it.customer.id == customerId }
+  fun withdraw(customerId: Int, amount: Double) {
+    val account = accounts.find { it.customer.name == customerName && it.customer.customerId == customerId }
     if (account == null) {
       throw Exception("Account not found")
     }
