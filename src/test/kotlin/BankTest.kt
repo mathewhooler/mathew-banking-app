@@ -20,6 +20,7 @@ class BankTestMultiAccounts {
     assertEquals(2, bank.accounts.size)
     assertContains(bank.accounts, account1)
     assertContains(bank.accounts, account2)
+
   }
 }
 
