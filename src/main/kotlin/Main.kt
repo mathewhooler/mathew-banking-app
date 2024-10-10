@@ -1,29 +1,30 @@
 fun main() {
-  val c1 = Customer("Mathew", 1)
-  val c2 = Customer("Steven", 2)
-  val c3 = Customer("Mathew", 3)
-  val c4 = Customer("Mark", 4)
+  val c1 = Customer("Mathew", 111)
+  val c2 = Customer("Steven", 222)
+  val c3 = Customer("Lissy", 333)
+  val c4 = Customer("Mark", 444)
 
-  val bank = Bank(mutableListOf(
-    Account(c1, 1, 0.0),
-    Account(c2, 2, 0.0),
-    Account(c3, 3, 0.0),
-    Account(c4, 4, 0.0)
-  ))
+  val accounts = mutableMapOf(
+    c1.customerId to Account(c1, 0),
+    c2.customerId to Account(c2, 0),
+    c3.customerId to Account(c3, 0),
+    c4.customerId to Account(c4, 0)
+  )
 
-  bank.deposit("Mathew", 1, 2000.0)
-  bank.deposit("Steven", 2, 3000.0)
-  bank.deposit("Mathew", 3, 5200.0)
-  bank.deposit("Mark", 4, 1200.0)
-  bank.deposit("Mathew", 1, 2000.0)
+  val bank = Bank(accounts)
 
-  bank.withdraw("Mathew", 1, 2500.0)
-  bank.withdraw("Mathew", 3, 2500.0)
+  bank.deposit(111, 2000)
+  bank.deposit(222, 3000)
+  bank.deposit(333, 5200)
+  bank.deposit(444, 1200)
+  bank.deposit(111, 2000)
 
-  val balance1 = bank.checkBalance(1)
-  val balance2 = bank.checkBalance(3)
+  bank.withdraw(111, 2500)
+  bank.withdraw(333, 2500)
+
+  val balance1 = bank.checkBalance(111)
+  val balance2 = bank.checkBalance(333)
 
   println("Balance of account 1: $balance1")
   println("Balance of account 3: $balance2")
 }
-

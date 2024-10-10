@@ -1,10 +1,7 @@
-class Bank(val accounts: MutableList<Account>) {
+class Bank(private val accounts: MutableMap<Int, Account>) {
 
-  fun deposit(customerId: Int, amount: Double) {
-    val account = accounts.find { it.customer.name == customerName && it.customer.customerId == customerId }
-    if (account == null) {
-      throw Exception("Account not found")
-    }
+  fun deposit(customerId: Int, amount: Int) {
+    val account = accounts[customerId] ?: throw Exception("Account not found")
     if (amount <= 0) {
       throw IllegalArgumentException("Deposit amount must be greater than zero")
     }
@@ -12,11 +9,8 @@ class Bank(val accounts: MutableList<Account>) {
 
   }
 
-  fun withdraw(customerId: Int, amount: Double) {
-    val account = accounts.find { it.customer.name == customerName && it.customer.customerId == customerId }
-    if (account == null) {
-      throw Exception("Account not found")
-    }
+  fun withdraw(customerId: Int, amount: Int) {
+    val account = accounts[customerId] ?: throw Exception("Account not found")
     if (amount <= 0) {
       throw IllegalArgumentException("Withdrawal amount must be greater than zero")
     }
@@ -27,11 +21,8 @@ class Bank(val accounts: MutableList<Account>) {
 
   }
 
-  fun checkBalance(customerId: Int): Double {
-    val account = accounts.find { it.customer.customerId == customerId }
-    if (account == null) {
-      throw Exception("Account not found")
-    }
+  fun checkBalance(customerId: Int): Int {
+    val account = accounts[customerId] ?: throw Exception("Account not found")
     return account.balance
   }
 }
