@@ -1,3 +1,3 @@
-class Account(val customer: Customer, var balance: Double) {
+class Account(val customer: Customer, var balance: Int) {
 
 }
