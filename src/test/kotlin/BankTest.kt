@@ -1,95 +1,49 @@
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
-class BankTestMultiAccounts {
+class BankTest {
   @Test
   fun `bank supports multiple accounts`() {
-    val customer1 = Customer("Terry", 42)
-    val customer2 = Customer("Susan", 37)
+    val customer1 = Customer("Terry", 111)
+    val customer2 = Customer("Susan", 222)
 
-    val account1 = Account(customer1, 0.0)
-    val account2 = Account(customer2, 0.0)
+    val account1 = Account(customer1, 0)
+    val account2 = Account(customer2, 0)
 
-    val accounts = mutableListOf(account1, account2)
+    val accountsMap = mutableMapOf(
+      customer1.customerId to account1,
+      customer2.customerId to account2
+    )
 
-    val bank = Bank(mutableListOf(Account(account1, 0.0), Account(account2, 0.0))
+    val bank = Bank(accountsMap)
 
     assertEquals(2, bank.accounts.size)
-    assertContains(bank.accounts, account1)
-    assertContains(bank.accounts, account2)
-
+    assertContains(bank.accounts.values, account1)
+    assertContains(bank.accounts.values, account2)
   }
-}
 
-class BankTestDeposits {
   @Test
-  fun `bank can make deposits`(){
+  fun `bank can make deposits`() {
     val customer1 = Customer("John", 1)
-    val customer2 = Customer("Jason", 2)
+    val account1 = Account(customer1, 0)
 
-    val account1 = Account(customer1, 0.0)
-    val account2 = Account(customer2, 0.0)
+    val bank = Bank(mutableMapOf(customer1.customerId to account1))
 
-    val accounts = mutableListOf(account1, account2)
+    bank.deposit(1, 1000)
 
-    val bank = Bank(mutableListOf<Account>())
-
-
-    bank.deposit("John", 1, 1000.0)
-
+    assertEquals(1000, account1.balance)
   }
-}
 
-class BankTestWithdrawals {
   @Test
-  fun `bank can make withdrawals`(){
+  fun `bank can make withdrawals`() {
     val customer1 = Customer("John", 1)
-    val customer2 = Customer("Jason", 2)
+    val account1 = Account(customer1, 500)
 
-    val account1 = Account(customer1, 500.0)
-    val account2 = Account(customer2, 600.0)
+    val bank = Bank(mutableMapOf(customer1.customerId to account1))
 
-    val accounts = mutableListOf(account1, account2)
+    bank.withdraw(1, 300)
 
-    val bank = Bank(mutableListOf<Account>())
-
-    bank.withdraw("John", 1, 300.0)
-
+    assertEquals(200, account1.balance)
   }
 }
-
-// class BankTestCheckBalance {
-//   @Test
-//   fun `can check balance of customers account`() {
-//     val customer1 = Customer("Terry", 1)
-//     val customer2 = Customer("Susan", 2)
-//
-//     val account1 = Account(customer1, 400.0)
-//     val account2 = Account(customer2, 0.0)
-//
-//     val accounts = listOf(account1, account2)
-//
-//     val bank = Bank(MutableList<Account>())
-//
-//     val balance = bank.checkBalance(1) // checking
-//
-//     assertEquals(400.0, balance)
-//   }
-// }
-
-// class BankTest5 {
-//   @Test
-//   fun `customer can have multiple accounts`() {
-//     val customer1 = Customer("Terry", 1)
-//     val customer2 = Customer("Susan", 2)
-//
-//     val account1 = Account(customer1)
-//     val account2 = Account(customer1)
-//
-//
-//     )
-//   }
-

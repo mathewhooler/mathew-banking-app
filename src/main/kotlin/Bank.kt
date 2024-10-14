@@ -1,4 +1,4 @@
-class Bank(private val accounts: MutableMap<Int, Account>) {
+class Bank(val accounts: MutableMap<Int, Account>) {
 
   fun deposit(customerId: Int, amount: Int) {
     val account = accounts[customerId] ?: throw Exception("Account not found")
@@ -21,8 +21,13 @@ class Bank(private val accounts: MutableMap<Int, Account>) {
 
   }
 
-  fun checkBalance(customerId: Int): Int {
+  fun checkAccountBalance(customerId: Int): Int {
     val account = accounts[customerId] ?: throw Exception("Account not found")
     return account.balance
   }
+
+  fun checkBankBalance(): Int {
+    return accounts.values.sumOf { it.balance }
+  }
 }
+

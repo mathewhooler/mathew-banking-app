@@ -22,9 +22,12 @@ fun main() {
   bank.withdraw(111, 2500)
   bank.withdraw(333, 2500)
 
-  val balance1 = bank.checkBalance(111)
-  val balance2 = bank.checkBalance(333)
+  val balance111 = bank.checkAccountBalance(111)
+  val balance333 = bank.checkAccountBalance(333)
 
-  println("Balance of account 1: $balance1")
-  println("Balance of account 3: $balance2")
+  println("Balance of account 111: $balance111")
+  println("Balance of account 333: $balance333")
+
+  val checkBankBalance = bank.checkBankBalance()
+  println("Balance of Bank: $checkBankBalance")
 }
