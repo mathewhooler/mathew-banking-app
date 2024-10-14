@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class BankTest {
   @Test
@@ -45,5 +46,17 @@ class BankTest {
     bank.withdraw(1, 300)
 
     assertEquals(200, account1.balance)
+  }
+
+  @Test
+  fun `bank will throw error if withdrawal amount is too high`() {
+    val customer1 = Customer("John", 1)
+    val account1 = Account(customer1, 500)
+    val bank = Bank(mutableMapOf(customer1.customerId to account1))
+
+
+    assertFailsWith<IllegalArgumentException> {
+      bank.withdraw(1, 800)
+    }
   }
 }
